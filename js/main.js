@@ -66,9 +66,9 @@
 		
 		/* ga test
 		----------------------------------------------------*/
-		$("#js_item4").click(function(){
-			ga('send', 'event', 'js_test', 'item4をクリック！', 'item4', 4, {'nonInteraction':1});
-		});
+//		$("#js_item4").click(function(){
+//			ga('send', 'event', 'js_test', 'item4をクリック！', 'item4', 4, {'nonInteraction':1});
+//		});
 
 	}); // DOMContentLoaded
 
