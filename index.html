@@ -19,24 +19,53 @@
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
 	<link rel="stylesheet" href="css/reset.css" media="all">
+	<link rel="stylesheet" href="css/jquery.bxslider.css" media="all">
 	<link rel="stylesheet" href="css/style.css" media="all">
+	<link rel="stylesheet" href="css/gatest.css" media="all">
 
 </head>
 
 <body>
 <header>
+	<h1 class="h_ga"><a href="/">Google Analytics Test</a></h1>
+	<nav class="globalNav">
+		<ul>
+			<li><a href="/gnav1/">gnav1</a></li><!--
+			--><li><a href="/gnav2/">gnav2</a></li><!--
+			--><li><a href="/gnav3/">gnav3</a></li><!--
+			--><li><a href="/gnav4/">gnav4</a></li>
+		</ul>
+	</nav>
 </header>
-
-<div class="mainContents">
-index.html
-<a href="index2.html">index2.html</a>
-<!--// mainContents--></div>
+<main>
+	<div class="mainContents">
+		<section class="topVisual">
+			<ul class="bxslider">
+				<li><a href="/gnav1/"><img src="images/slider1.jpg" alt="スライダー1"></a></li>
+				<li><a href="/gnav2/"><img src="images/slider2.jpg" alt="スライダー2"></a></li>
+				<li><a href="/gnav3/"><img src="images/slider3.jpg" alt="スライダー3"></a></li>
+			</ul>
+		</section>
+		<nav class="lineup">
+			<h2>Line up</h2>
+			<ul>
+				<li><a href="#" onClick="ga('send', 'event', 'link', 'click', 'item1', 1, {'nonInteraction':1});"><img src="images/item1_off.jpg" alt="アイテム1"></a></li><!--
+				--><li><a href="#"><img src="images/item2_off.jpg" alt="アイテム2"></a></li><!--
+				--><li><a href="#"><img src="images/item3_off.jpg" alt="アイテム3"></a></li><!--
+				--><li><a href="#"><img src="images/item4_off.jpg" alt="アイテム4"></a></li><!--
+				--><li><a href="#"><img src="images/item5_off.jpg" alt="アイテム5"></a></li><!--
+				--><li><a href="#"><img src="images/item6_off.jpg" alt="アイテム6"></a></li>
+			</ul>
+		</nav>
+	<!--//mainContents--></div>
+</main>
 
 <footer>
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!--<script src="js/jquery.min.js"></script>-->
+<script src="js/jquery.bxslider.min.js"></script>
 <script src="js/main.js"></script>
 <script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -48,7 +77,6 @@ index.html
 	ga('send', 'pageview');
 
 	console.log("JS OK");
-	$(".mainContents").append("<p>jQuery OK</p>");
 </script>
 
 </body>

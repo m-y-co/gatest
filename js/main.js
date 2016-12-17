@@ -28,6 +28,42 @@
 			}
 		}
 
+		/* toppage slider*/
+		if (sp_mode) {
+		} else {
+			$(".bxslider").bxSlider({
+				slideMargin: 0,
+				pager: false,
+				controls: true,
+				auto: true,
+				pause: 5000,
+				autoHover: true
+			});
+		}
+
+		/* rollover
+				----------------------------------------------------*/
+		$("body").on({
+			"mouseenter" : function(){
+				if (!sp_mode) {
+					var src = $(this).attr("src");
+					if (src.indexOf("_off.") != -1) {
+						var onSrc = src.replace("_off.", "_on.");
+						$(this).attr("src", onSrc);
+					};
+				}
+			},
+			"mouseleave" : function(){
+				if (!sp_mode) {
+					var src = $(this).attr("src");
+					if (src.indexOf("_on.") != -1) {
+						var offSrc = src.replace("_on.", "_off.");
+						$(this).attr("src", offSrc);
+					};
+				}
+			}
+		}, "a img");
+
 	}); // DOMContentLoaded
 
 })(this.jQuery);
