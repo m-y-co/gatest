@@ -59,7 +59,7 @@
 	left: 0px;
 	background: #fff;
 }
-.lineup h2{
+.item_lineup h2{
 	color: #999;
 	font-family: "Arial";
 	font-size: 24px;
@@ -68,13 +68,13 @@
 	padding: 0 0 10px 10px;
 	border-bottom: 1px #dedede solid;
 }
-.lineup ul{text-align: center;}
-.lineup li{
+.item_lineup ul{text-align: center;}
+.item_lineup li{
 	display: inline-block;
 	margin-right: 12px;
 }
-.lineup li:last-child{margin-right: 0;}
-.lineup a{
+.item_lineup li:last-child{margin-right: 0;}
+.item_lineup a{
 	display: block;
 	width: 130px;
 	height: 200px;
