@@ -1,0 +1,71 @@
+/* ====================================== */
+/* header */
+#menu,
+#header-menu {
+	display: none;
+}
+
+/* ====================================== */
+/* main */
+#topcontrol {
+	display: none;
+}
+
+/* recipes */
+#recipes-detail {
+	-ms-zoom: 65%;
+	*zoom: 65%;
+	font-size: 1.2em;
+}
+
+#recipes-detail #topicPath,
+#recipes-detail .recipe-nav {
+	display: none;
+}
+
+#recipes-detail .contents {
+	float: none;
+	margin: 0 auto;
+}
+
+#recipes-detail .contents .caticons {
+	display: none;
+}
+
+#recipes-detail .contents .recipe .favorited,
+#recipes-detail .contents .recipe .favorited + p {
+	display: none;
+}
+
+/* company */
+#news-detail {
+	-ms-zoom: 65%;
+	*zoom: 70%;
+	font-size: 1.2em;
+}
+
+#news-detail .company-nav {
+	display: none;
+}
+
+#news-detail .contents {
+	float: none;
+	margin: 0 auto;
+}
+
+/* ====================================== */
+/* footer */
+#sns,
+#footer-banner,
+#footer-inner,
+#footer-menu,
+#footer-copyright li {
+	display: none;
+}
+
+#footer-copyright li#copyright {
+	float: right !important;
+	display: block !important;
+}
+
+/* ====================================== */
