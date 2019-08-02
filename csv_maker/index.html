@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>list型編集用CSV 変換ツール</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.filedrop.js"></script>
+<script type="text/javascript" src="csv-list.js"></script>
+</head>
+
+<body class="font_d">
+<div class="maincontents">
+<header>
+	<h1>list型編集用CSV 変換ツール</h1>
+</header>
+
+<section>
+<div class="error">
+	お使いのブラウザでは変換することはできません。<br>
+	（IE 10.0以降、Firefox 13.0以降、Chrome 20.0以降のブラウザをお使いください）<br>
+<!--//error--></div>
+
+<p class="info">
+エクスポートとしたアプリのcsv（1つのidに対し複数の値を持つもの）下記のように編集用のcsvに変換します。
+<div class="sample_bk">
+<div class="sample3">
+id00001,<br />
+id00001,タグA<br />
+id00001,タグB<br />
+id00002,<br />
+id00002,タグC<br />
+id00002,タグB<br />
+id00002,タグE<br />
+id00002,タグF<br />
+</div>
+<div class="sample2">⇒（変換）⇒</div>
+<table class="sample">
+	<tr>
+		<td>id000001</td>
+		<td>タグA</td>
+		<td>タグB</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>id000002</td>
+		<td>タグC</td>
+		<td>タグB</td>
+		<td>タグE</td>
+		<td>タグF</td>
+	</tr>
+</table>
+
+</div>
+</p>
+
+<div id="droppable">
+この枠内にCSVをドロップして下さい。
+<p class="attention">無効なファイルです。</p>
+<!--//#droppable--></div>
+
+<div class="download">
+<p><a id="download1" target="_blank">「list.csv」を保存する</a></p>
+<!--//download--></div>
+
+</section>
+
+<footer>
+2019/08/02 v1.0.1 GitHub upload
+2018/12/14 v1.0.0 Initial release
+</footer>
+
+<!--//maincontents--></div>
+</body>
+</html>
