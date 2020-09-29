@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>【Excel-VBA】references型のフィールドを編集するための手順 覚え書き</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.filedrop.js"></script>
+<script type="text/javascript" src="csv-list.js"></script>
+</head>
+
+<body class="font_d">
+<div class="maincontents">
+<header>
+	<h1>【Excel】references型のフィールドを編集するための手順 覚え書き</h1>
+</header>
+
+<section>
+<p class="info">references型のフィールドは下記のような形式のcsvでエクスポートされます。</p>
+<div class="sample3">
+_id,reference<br />
+id1,<br />
+id1,ref1<br />
+id1,de-ref1<br />
+id1,ref2<br />
+id1,ref3<br />
+id1,de-ref3<br />
+id2,<br />
+id2,de-ref1<br />
+id2,ref2<br />
+id2,de-ref2<br />
+id2,de-ref3<br />
+id2,ref5<br />
+id3,<br />
+id3,ref1<br />
+id3,ref3<br />
+id2,de-ref3<br />
+id3,ref4<br />
+id3,ref5<br /> 
+</div>
+    <p class="info">このようなフィールドに登録されたタグのreferenceのうち、「de-」のついたタグは廃止となり、その代わりに新たに追加したタグ（new1~new3）の紐づけを追加したいという状況があるとします。<br />
+    「de-」のつかないタグの紐づけは残したまま、新たに追加されたタグの紐づけを追加したreferences型フィールドのCSVを編集するのは、かなりややこしい作業になりますが、以下の手順に従って作成できます。<br />
+    <br />
+    <br />        
+    まずエクスポートされたCSVをExcelで開いて<span class="spa1">①それぞれの「_id」の先頭行</span>と<span class="spa2">②不要となるタグの行</span>をExcel上でフィルタを使って削除します。<br />※つまり変更しないタグ部分だけ残します。</p>
+<div class="sample_bk">
+<div class="sample3">
+_id,reference<br />
+    <span class="spa1">id1,</span><br />
+id1,ref1<br />
+<span class="spa2">id1,de-ref1</span><br />
+id1,ref2<br />
+id1,ref3<br />
+<span class="spa2">id1,de-ref3</span><br />
+<span class="spa1">id2,</span><br />
+<span class="spa2">id2,de-ref1</span><br />
+id2,ref2<br />
+<span class="spa2">id2,de-ref2</span><br />
+<span class="spa2">id2,de-ref3</span><br />
+id2,ref5<br />
+<span class="spa1">id3,</span><br />
+id3,ref1<br />
+id3,ref3<br />
+<span class="spa2">id2,de-ref3</span><br />
+id3,ref4<br />
+id3,ref5<br /> 
+</div>
+<div class="sample2">⇒（削除）⇒</div>
+<div class="sample3">
+_id,reference<br />
+id1,ref1<br />
+id1,ref2<br />
+id1,ref3<br />
+id2,ref2<br />
+id2,ref5<br />
+id3,ref1<br />
+id3,ref3<br />
+id3,ref4<br />
+id3,ref5<br /> 
+</div>
+</div>
+    
+<p class="info">
+この形式にExcel上で整えたら関数「writeCSV_references_to_table」で下記のような追加用のCSV※に変換します。<br />
+※サンプルExcel「references編集.xlsm」では「references_table」シートの内容が「references_table.csv」というファイル名で出力されます。</p>
+<div class="sample_bk">
+<div class="sample3">
+_id,reference<br />
+id1,ref1<br />
+id1,ref2<br />
+id1,ref3<br />
+id2,ref2<br />
+id2,ref5<br />
+id3,ref1<br />
+id3,ref3<br />
+id3,ref4<br />
+id3,ref5<br /> 
+</div>
+<div class="sample2">⇒（変換）⇒<br /><br /><br /><br /><br /><br /><br /><br /></div>
+<div class="sample3">
+id1,ref1|ref2|ref3<br />
+id2,ref2|ref5<br />
+id3,ref1|ref3|ref4|ref5<br />
+<br /><br /><br /><br /><br /><br /><br />
+</div>
+</div>
+
+<p class="info">
+次にExcel上の新たなシートで、新規追加＆再編するタグを下記のようなテーブルで編集します。<br />
+「追加列」には先ほど変換したCSVから「|」区切りの既存タグ部分を追加します。<br />
+※サンプルExcel「references編集.xlsm」の「test」シート参照<br />
+※タグの紐づけがない部分は空欄にします。<br />
+※追加列は必ず新規タグ列の最後に追加してください。</p>
+<table class="sample">
+	<tr>
+		<td>_id</td>
+		<td>新タグ1</td>
+		<td>新タグ2</td>
+		<td>新タグ3</td>
+		<td>追加列</td>
+	</tr>
+	<tr>
+		<td>id1</td>
+		<td>new1</td>
+		<td></td>
+		<td>new3</td>
+		<td class="tdleft">ref1|ref2|ref3</td>
+	</tr>
+	<tr>
+		<td>id2</td>
+		<td>new1</td>
+		<td>new2</td>
+		<td></td>
+		<td class="tdleft">ref2|ref5</td>
+	</tr>
+	<tr>
+		<td>id3</td>
+		<td></td>
+		<td></td>
+		<td>new3</td>
+		<td class="tdleft">ref1|ref3|ref4|ref5</td>
+	</tr>
+</table>
+
+<p class="info">
+このシートの所定の範囲を関数「 writeCSV_add_tags」で書き出すと、下記のようなインポート用のCSVとなります。</p>
+<div class="sample3">
+_id,references<br />
+id1,<br />
+id1,new1<br />
+id1,new3<br />
+id1,ref1<br />
+id1,ref2<br />
+id1,ref3<br />
+id2,<br />
+id2,new1<br />
+id2,new2<br />
+id2,ref2<br />
+id2,ref5<br />
+id3,<br />
+id3,new3<br />
+id3,ref1<br />
+id3,ref3<br />
+id3,ref4<br />
+id3,ref5<br />
+    </div>
+</section>
+
+<footer>
+2020/09/29 作成
+</footer>
+
+<!--//maincontents--></div>
+</body>
+</html>
